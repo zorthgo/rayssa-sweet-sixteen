@@ -1217,14 +1217,14 @@ canvas {
 
 @-webkit-keyframes love {
   50% {
-    fill: red;
+    fill: rgb(243, 183, 243); /* Heart-Color */
     opacity: 1;
   }
 }
 
 @keyframes love {
   50% {
-    fill: red;
+    fill: rgb(243, 183, 243); /* Heart-Color */
     opacity: 1;
   }
 }
