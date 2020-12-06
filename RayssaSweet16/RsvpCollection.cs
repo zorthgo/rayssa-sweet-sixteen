@@ -19,7 +19,7 @@ namespace RayssaSweet16
         }
 
         public SetRsvpRequest GetByEmail(string emailAddress)
-            => this.FirstOrDefault(x => x.Email.Equals(emailAddress, StringComparison.InvariantCultureIgnoreCase));
+            => this.FirstOrDefault(x => x.Email.Trim().Equals(emailAddress.Trim(), StringComparison.InvariantCultureIgnoreCase));
         
         public static RsvpCollection GetRsvpCollection()
         {

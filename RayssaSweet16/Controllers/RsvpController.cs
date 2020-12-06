@@ -36,13 +36,15 @@ namespace RayssaSweet16.Controllers
             try
             {
                 // Determines whether the request is updating or inserting a new entry.
-                if (_rsvpCollection.GetByEmail(request.Email) == null)
+                var rsvp = _rsvpCollection.GetByEmail(request.Email);
+                if (rsvp == null)
                 {
                     status = "success";
                     message = "Thank you for RSVPing!";
                 }
                 else
                 {
+                    _rsvpCollection.Remove(rsvp);
                     status = "warning";
                     message = "Your RSVP entry has been updated.";
                 }
