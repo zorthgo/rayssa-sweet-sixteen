@@ -28,10 +28,17 @@
 		<link rel="stylesheet" href="style.css">
 
 		<link rel="stylesheet" href="css/responsive.css">
+
+		<script type="text/javascript">
+			function Play(){
+				document.getElementById('audio').play();
+				alert("Jay");
+			}
+		</script>
 	</head>
 
-	<body class="the-heart-default-body the-heart-overly">
-		<audio id="audio" src="img/raining-men.mp3" autoplay loop controls></audio>
+	<body class="the-heart-default-body the-heart-overly" onload="Play()">
+
 	<!-- The Heart Body Start -->
 	<!-- Preloder -->
 	<div id="prelaoder"></div>
@@ -512,8 +519,7 @@
 	<script src="js/jarallax-video.js"></script>
 	<script src="js/main.js"></script>
 
-	<script>
-		document.getElementById('audio').play();
-	</script>
+	<audio id="audio" src="img/raining-men.mp3" autoplay loop controls></audio>
+	
 	</body>
 </html>
