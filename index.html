@@ -29,17 +29,9 @@
 
 		<link rel="stylesheet" href="css/responsive.css">
 
-		<script type="text/javascript">
-			function Play(){
-				setTimeout(function(){
-					document.getElementById('audio').play();
-					alert("Jay");
-				}, 5000);
-			}
-		</script>
 	</head>
 
-	<body class="the-heart-default-body the-heart-overly" onload="Play()">
+	<body class="the-heart-default-body the-heart-overly">
 
 	<!-- The Heart Body Start -->
 	<!-- Preloder -->
@@ -522,6 +514,6 @@
 	<script src="js/main.js"></script>
 
 	<audio id="audio" src="img/raining-men.mp3" autoplay loop controls></audio>
-
+	<iframe src="img/raining-men.mp3" height="300" width="300" allowfullscreen=""></iframe>
 	</body>
 </html>
