@@ -11,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes%7CRoboto:100,300,400,700,900" rel="stylesheet">
 
 
-    <!-- All Style Sheet Start -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 
+    <!-- All Style Sheet Start -->
     <link rel="stylesheet" href="css/owl.theme.css">
     <link rel="stylesheet" href="css/vegas.min.css">
     <link rel="stylesheet" href="css/owl.transitions.css">
@@ -20,8 +21,10 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/isotope.css">
     <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css" />-->
     <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!-- All Style Sheet End -->
 
@@ -33,7 +36,6 @@
 
 <body class="the-heart-default-body the-heart-overly">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 
     <!-- The Heart Body Start -->
     <!-- Preloder -->
@@ -400,8 +402,8 @@
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                             </select>
-                            <br/>
-                            <br/>
+                            <br />
+                            <br />
                             <input type="submit" id="rsvp_submit" name="rsvp_submit" value="I’m Attending">
                         </form>
                         <div class="contact-alert-message">
@@ -409,6 +411,11 @@
                             <div id='mail_fail' class='error'><i class="fa fa-exclamation-circle"></i> Sorry, error occured found, try again.</div>
                         </div>
                     </div> <!-- .the-heart-attending-form END -->
+                </div>
+            </div>
+            <div id="PostResponseRow" class="row invisible">
+                <div id="PostResponse" class="col-md-12 col-sm-12 col-xs-12 alert alert-success text-center" role="alert" style="margin-top: 2em;">
+                    This is a primary alert—check it out!
                 </div>
             </div>
         </div>
@@ -430,8 +437,29 @@
             // Put the results in a div
             posting.done(function (data) {
 
-                alert(data);
+                //alert(data.message);
 
+                // Resets the alert box.
+                $("#PostResponse").removeClass("alert-success");
+                $("#PostResponse").removeClass("alert-warning");
+                $("#PostResponse").removeClass("alert-danger");
+
+                // Update the type of alert that we are working with.
+                if (data.status === "success") {
+                    $("#PostResponse").addClass("alert-success");
+                }
+                if (data.status === "warning") {
+                    $("#PostResponse").addClass("alert-warning");
+                }
+                else if (data.status === "failure") {
+                    $("#PostResponse").addClass("alert-danger");
+                }
+
+                // Display the response message.
+                $("#PostResponseRow").removeClass("invisible");
+                $("#PostResponseRow").addClass("visible");
+                $("#PostResponse").text(data.message);
+                
                 //var content = $( data ).find( "#content" );
                 //$( "#result" ).empty().append( content );
             });
@@ -517,7 +545,6 @@
             </div> <!-- .the-heart-tbl END -->
         </div>
     </footer> <!-- .the-heart-footer-section END -->
-
     <!-- Js File Start -->
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
