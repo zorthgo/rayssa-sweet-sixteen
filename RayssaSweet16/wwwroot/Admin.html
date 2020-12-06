@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Raysssa's Sweet Sixteen - Admin</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body onload="GetRsvp()">
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Number Of Guests</th>
+                <th scope="col">TimeStamp</th>
+                <th><button type="button" class="btn btn-info" onclick="location.reload(true);">Refresh The List</button></th>
+            </tr>
+        </thead>
+        <tbody id="rsvpContext">
+        </tbody>
+    </table>
+
+
+<script>
+
+        function DeleteRsvp(email) {
+
+            // Calls the backend to remove the RSVP entry.
+            var posting = $.post("Rsvp/DeleteRsvpEntry", { emailAddress: email });
+
+            // Reload the page once the entry has been successfully removed.
+            posting.done(function(data) {
+                location.reload(true);
+            });
+        }
+        
+        function GetRsvp() {
+
+            // Gets the RSVP from the backend.
+            var posting = $.get("Rsvp/GetRsvp", "");
+
+            // Adds the RSVP to the table.
+            posting.done(function (data) {
+
+                for (i = 0; i < data.length; i++) {
+                    $("#rsvpContext").append("<tr><td>" + data[i].name + "</td><td>" + data[i].email + "</td><td>" + data[i].numberOfGuests + "</td><td scope=\"row\">" + new Date(data[i].timeStamp).toLocaleString() + "</td><td><button type=\"button\" class=\"btn btn-danger\" onClick=\"DeleteRsvp('" + data[i].email + "');\">REMOVE</button></td></tr>");
+                }
+            });
+        }
+
+    </script>
+
+</body>
+</html>

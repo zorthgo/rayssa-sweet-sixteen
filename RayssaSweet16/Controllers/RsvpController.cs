@@ -73,8 +73,8 @@ namespace RayssaSweet16.Controllers
             return _rsvpCollection;
         }
 
-        [HttpGet]
-        public RsvpCollection DeleteRsvpEntry([FromQuery] string emailAddress)
+        [HttpPost]
+        public RsvpCollection DeleteRsvpEntry([FromForm] string emailAddress)
         {
             var rsvp = _rsvpCollection.GetByEmail(emailAddress);
 
