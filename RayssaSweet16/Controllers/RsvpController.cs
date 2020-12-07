@@ -93,6 +93,7 @@ namespace RayssaSweet16.Controllers
         public DateTime TimeStamp { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Attending { get; set; }
         public int NumberOfGuests { get; set; }
     }
 

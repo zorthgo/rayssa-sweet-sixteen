@@ -17,6 +17,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Number Of Guests</th>
+                <th scope="col">Attending</th>
                 <th scope="col">TimeStamp</th>
                 <th><button type="button" class="btn btn-info" onclick="location.reload(true);">Refresh The List</button></th>
             </tr>
@@ -48,7 +49,7 @@
             posting.done(function (data) {
 
                 for (i = 0; i < data.length; i++) {
-                    $("#rsvpContext").append("<tr><td>" + data[i].name + "</td><td>" + data[i].email + "</td><td>" + data[i].numberOfGuests + "</td><td scope=\"row\">" + new Date(data[i].timeStamp).toLocaleString() + "</td><td><button type=\"button\" class=\"btn btn-danger\" onClick=\"DeleteRsvp('" + data[i].email + "');\">REMOVE</button></td></tr>");
+                    $("#rsvpContext").append("<tr><td>" + data[i].name + "</td><td>" + data[i].email + "</td><td>" + data[i].numberOfGuests + "</td><td>" + data[i].attending + "</td><td scope=\"row\">" + new Date(data[i].timeStamp).toLocaleString() + "</td><td><button type=\"button\" class=\"btn btn-danger\" onClick=\"DeleteRsvp('" + data[i].email + "');\">REMOVE</button></td></tr>");
                 }
             });
         }
